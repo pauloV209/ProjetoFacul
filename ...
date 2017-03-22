@@ -1,0 +1,117 @@
+public static void main(String[] args) {
+       int contSenha,senha,menu,qntAlunos,aux,aprovado,reprovado,aprovado2,reprovado2,nrSorteado,valorDeDeslocamento,valorDeEscalonamento;
+       float porcentagemA,porcentagemR,nota1,nota2,nota3,somaNota1,somaNota2,somaNota3,mediaA,mediaP,porcentagemA2,porcentagemR2;
+       valorDeDeslocamento=1;
+       contSenha=0;
+       menu=1;
+       somaNota1=0;
+       somaNota2=0;
+       somaNota3=0;
+       aprovado=0;
+       reprovado=0;
+       aprovado2=0;
+       reprovado2=0;
+       qntAlunos=0;
+      
+  
+       Random nrAleatorio= new Random();
+       Scanner leia=new Scanner(System.in);
+       
+       do{
+           System.out.print("Senha : ");
+           senha=leia.nextInt();
+           contSenha++;
+           if(contSenha>=5){
+               System.out.println("Voce atingiu o numero maximo de tentativas!!!!");
+               System.exit(0);        
+           }
+           
+       }
+       while(senha!=123);
+       while(menu!=0){
+       System.out.println("(1)Notas");
+       System.out.println("(2)Medias/Porcentagens");
+       System.out.println("(3)Sorteio");
+       System.out.println("(0)Sair");
+       menu=leia.nextInt();
+       switch(menu){
+           case 1:
+                System.out.println("Quantos alunos tem na turma?");
+                qntAlunos=leia.nextInt();
+                for(aux=1;aux<=qntAlunos;aux++){
+                     System.out.println("Aluno:"+aux+"   Nota1 : ");
+                     nota1=leia.nextInt();
+                     System.out.println("Aluno:"+aux+"   Nota2 : ");
+                     nota2=leia.nextInt();
+                     System.out.println("Aluno:"+aux+"   Nota3 : ");
+                     nota3=leia.nextInt();
+                     somaNota1=somaNota1+nota1;
+                     somaNota2=somaNota2+nota2;
+                     somaNota3=somaNota3+nota3;
+                     mediaA=(nota1+nota2+nota3)/3;
+                     mediaP=(nota1+nota2*2+nota3*3)/6;
+                    
+                     if(mediaA>=5)
+                         aprovado++;
+                     else
+                         reprovado++;
+                     if(mediaP>=5)
+                         aprovado2++;
+                     else
+                         reprovado2++;
+                             
+                }
+                break;
+           case 2:
+               if(qntAlunos==0){
+                   System.out.println("Erro!!!Digite os dados de entrada!!!");
+                   break;
+                   
+               }
+               else{
+               porcentagemA=aprovado*100/qntAlunos;
+               porcentagemR=reprovado*100/qntAlunos;
+               porcentagemA2=aprovado2*100/qntAlunos;
+               porcentagemR2=reprovado2*100/qntAlunos;
+               System.out.println("Quantidade de Alunos aprovados(Sem média ponderada) : "+aprovado);
+               System.out.println("Quantidade de Alunos reprovados(Sem média ponderada) : "+reprovado);
+               System.out.println("Quantidade de Alunos aprovados(Com média ponderada) : "+aprovado2);
+               System.out.println("Quantidade de Alunos reprovados(Com média ponderada) : "+reprovado2);
+               System.out.println("Porcentagem de Alundos aprovados(Sem média ponderada) : "+porcentagemA+"%");
+               System.out.println("Porcentagem de Alundos reprovados(Sem média ponderada) : "+porcentagemR+"%"); 
+               System.out.println("Porcentagem de Alundos aprovados(Com média ponderada) : "+porcentagemA2+"%");
+               System.out.println("Porcentagem de Alundos reprovados(Com média ponderada) : "+porcentagemR2+"%");
+               break;
+               
+               }
+           case 3 :
+               if(qntAlunos==0){
+                   System.out.println("Erro!!!!Digite os dados de entrada!!!");
+                   break;
+               }
+               if(aprovado>qntAlunos/2 && aprovado2>qntAlunos/2){
+                   valorDeEscalonamento=qntAlunos+1;
+                   nrSorteado = valorDeDeslocamento + nrAleatorio.nextInt ( valorDeEscalonamento );
+                   System.out.println("O aluno :"+nrSorteado+"Ganhou o Sorteio!!!!!!!" );
+                   break;
+                   
+               }
+               else{
+                   System.out.println("As condicoes para o sorteio nÃ£o foram atingidas!!!!");
+                   break;
+               }    
+                   
+           case 0:
+               System.out.println("Obrigado por usar nosso programa!!!!");
+               break;
+           default :
+               System.out.println("Erro!!!");
+               break;
+                       
+                 
+       }
+       }
+               
+       }
+    }
+    
